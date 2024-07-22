@@ -60,8 +60,7 @@ schema.yml
 
 generated the schema and relationships between the dimension tables and staging tables.
 
-link to documentation:
-http://localhost:8080/#!/model/model.elastic_dbt_interview.fct_salesforce_rev
+
 
 
 
