@@ -10,16 +10,6 @@ Dimension on STG_SALESFORCE__CAMPAIGN.
 Surrogate Key for this table is generated on campaign_id
 
 
-
-DIM_SALESFORCE__ACCOUNT.
-This dimension is created on  STG_SALESFORCE__ACCOUNT 
-Surrogate Key for this table is generated  on ACCOUNT_ID
-
-DIM_SALESFORCE__CAMPAIGN.
-This dimension is created on  STG_SALESFORCE__CAMPAIGN
-Surrogate Key for this table is generated  on CAMPAIGN_ID
-
-
 DIM_SALESFORCE__CUSTOMER:
 Lead and Contact both are related to customers.
 Lead - is a potential Customer, someone who can give you business
