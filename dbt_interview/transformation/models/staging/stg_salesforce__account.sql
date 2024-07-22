@@ -76,3 +76,4 @@ renamed as (
 )
 
 select * from renamed
+where account_id is not null

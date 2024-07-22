@@ -24,3 +24,4 @@ renamed as (
 )
 
 select * from renamed
+where case_history_id is not null

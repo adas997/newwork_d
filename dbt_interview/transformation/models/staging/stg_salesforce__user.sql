@@ -92,3 +92,4 @@ renamed as (
 )
 
 select * from renamed
+where user_id is not null

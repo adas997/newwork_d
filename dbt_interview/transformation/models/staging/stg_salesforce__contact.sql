@@ -72,3 +72,4 @@ renamed as (
 )
 
 select * from renamed
+where contact_id is not null

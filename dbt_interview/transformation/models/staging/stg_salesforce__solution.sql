@@ -33,3 +33,4 @@ renamed as (
 )
 
 select * from renamed
+where solution_id is not null

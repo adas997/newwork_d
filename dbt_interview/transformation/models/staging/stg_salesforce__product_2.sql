@@ -37,3 +37,4 @@ renamed as (
 )
 
 select * from renamed
+where product_id is not null

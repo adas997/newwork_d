@@ -58,3 +58,4 @@ renamed as (
 )
 
 select * from renamed
+where campaign_id is not null

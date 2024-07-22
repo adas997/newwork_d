@@ -1,0 +1,1456 @@
+version: 2
+models:
+  - name: dim_salesforce__account
+    description: "Dimension table for account"
+    columns:
+      - name: dim_account_key
+        tests:
+          - unique
+          - not_null
+        data_type: varchar
+        description: ""
+
+      - name: account_id
+        tests:
+          - unique
+          - not_null
+        data_type: varchar
+        description: ""
+
+      - name: is_deleted
+        data_type: bigint
+        description: ""
+
+      - name: master_recordid
+        data_type: varchar
+        description: ""
+
+      - name: account_name
+        data_type: varchar
+        description: ""
+
+      - name: account_type
+        data_type: varchar
+        description: ""
+
+      - name: parentid
+        data_type: varchar
+        description: ""
+
+      - name: billing_street
+        data_type: varchar
+        description: ""
+
+      - name: billing_city
+        data_type: varchar
+        description: ""
+
+      - name: billing_state
+        data_type: varchar
+        description: ""
+
+      - name: billing_postalcode
+        data_type: bigint
+        description: ""
+
+      - name: billing_country
+        data_type: varchar
+        description: ""
+
+      - name: shipping_street
+        data_type: varchar
+        description: ""
+
+      - name: shipping_city
+        data_type: varchar
+        description: ""
+
+      - name: shipping_state
+        data_type: varchar
+        description: ""
+
+      - name: shipping_postalcode
+        data_type: bigint
+        description: ""
+
+      - name: shipping_country
+        data_type: varchar
+        description: ""
+
+      - name: phone
+        data_type: varchar
+        description: ""
+
+      - name: fax
+        data_type: varchar
+        description: ""
+
+      - name: account_number
+        data_type: varchar
+        description: ""
+
+      - name: website
+        data_type: varchar
+        description: ""
+
+      - name: sic
+        data_type: bigint
+        description: ""
+
+      - name: industry
+        data_type: varchar
+        description: ""
+
+      - name: number_of_employees
+        data_type: bigint
+        description: ""
+
+      - name: ownership
+        data_type: varchar
+        description: ""
+
+      - name: tickersymbol
+        data_type: varchar
+        description: ""
+
+      - name: description
+        data_type: varchar
+        description: ""
+
+      - name: rating
+        data_type: varchar
+        description: ""
+
+      - name: site
+        data_type: varchar
+        description: ""
+
+      - name: ownerid
+        data_type: varchar
+        description: ""
+
+      - name: account_created_date
+        data_type: timestamp
+        description: ""
+
+      - name: account_createdby_id
+        data_type: varchar
+        description: ""
+
+      - name: account_lastmodified_date
+        data_type: timestamp
+        description: ""
+
+      - name: account_lastmodifiedby_id
+        data_type: varchar
+        description: ""
+
+      - name: systemmodstamp
+        data_type: timestamp
+        description: ""
+
+      - name: clean_status
+        data_type: varchar
+        description: ""
+
+      - name: account_source
+        data_type: varchar
+        description: ""
+
+      - name: year_started
+        data_type: varchar
+        description: ""
+
+      - name: customer_priority
+        data_type: varchar
+        description: ""
+
+      - name: sla
+        data_type: varchar
+        description: ""
+
+      - name: active
+        data_type: varchar
+        description: ""
+
+      - name: number_oflocations
+        data_type: double
+        description: ""
+
+      - name: upsell_opportunity
+        data_type: varchar
+        description: ""
+
+      - name: sla_serial_number
+        data_type: bigint
+        description: ""
+
+      - name: sla_expiration_date
+        data_type: varchar
+        description: ""
+
+  - name: dim_salesforce__campaign
+    description: "Dimension table for campaign"
+    columns:
+      - name: dim_campaign_key
+        tests:
+          - unique
+          - not_null
+        data_type: varchar
+        description: ""
+
+      - name: campaign_id
+        tests:
+          - unique
+          - not_null
+        data_type: varchar
+        description: ""
+
+      - name: is_deleted
+        data_type: bigint
+        description: ""
+
+      - name: campaign_name
+        data_type: varchar
+        description: ""
+
+      - name: parentid
+        data_type: varchar
+        description: ""
+
+      - name: campaign_type
+        data_type: varchar
+        description: ""
+
+      - name: campaign_status
+        data_type: varchar
+        description: ""
+
+      - name: campaign_start_date
+        data_type: timestamp
+        description: ""
+
+      - name: campaign_end_date
+        data_type: timestamp
+        description: ""
+
+      - name: expected_response
+        data_type: bigint
+        description: ""
+
+      - name: number_sent
+        data_type: bigint
+        description: ""
+
+      - name: is_active
+        data_type: bigint
+        description: ""
+
+      - name: campaign_description
+        data_type: varchar
+        description: ""
+
+      - name: ownerid
+        data_type: varchar
+        description: ""
+
+      - name: campaign_created_date
+        data_type: timestamp
+        description: ""
+
+      - name: campaign_createdby_id
+        data_type: varchar
+        description: ""
+
+      - name: campaign_lastmodified_date
+        data_type: timestamp
+        description: ""
+
+      - name: campaign_lastmodifiedby_id
+        data_type: varchar
+        description: ""
+
+      - name: campaign_member_recordtype_id
+        data_type: varchar
+        description: ""
+
+  - name: dim_salesforce__case
+    description: "Dimension table for case. It is modeled on SCD Case"
+    columns:
+      - name: dim_case_key
+        tests:
+          - unique
+          - not_null
+        data_type: varchar
+        description: ""
+
+      - name: case_id
+        tests:
+          - unique
+          - not_null
+        data_type: varchar
+        description: ""
+
+      - name: isdeleted
+        data_type: bigint
+        description: ""
+
+      - name: masterrecordid
+        data_type: varchar
+        description: ""
+
+      - name: casenumber
+        data_type: varchar
+        description: ""
+
+      - name: contactid
+        tests:
+          - relationships:
+              to: ref('stg_salesforce__contact')
+              field: contact_id
+        data_type: varchar
+        description: ""
+
+      - name: accountid
+        tests:
+          - relationships:
+              to: ref('stg_salesforce__account')
+              field: account_id
+
+        data_type: varchar
+        description: ""
+
+      - name: assetid
+        data_type: varchar
+        description: ""
+
+      - name: productid
+        
+        data_type: varchar
+        description: ""
+
+      - name: entitlementid
+        data_type: varchar
+        description: ""
+
+      - name: sourceid
+        data_type: varchar
+        description: ""
+
+      - name: businesshoursid
+        data_type: varchar
+        description: ""
+
+      - name: parentid
+        data_type: varchar
+        description: ""
+
+      - name: suppliedname
+        data_type: varchar
+        description: ""
+
+      - name: suppliedemail
+        data_type: varchar
+        description: ""
+
+      - name: suppliedphone
+        data_type: varchar
+        description: ""
+
+      - name: suppliedcompany
+        data_type: varchar
+        description: ""
+
+      - name: type
+        data_type: varchar
+        description: ""
+
+      - name: status
+        data_type: varchar
+        description: ""
+
+      - name: reason
+        data_type: varchar
+        description: ""
+
+      - name: origin
+        data_type: varchar
+        description: ""
+
+      - name: subject
+        data_type: varchar
+        description: ""
+
+      - name: priority
+        data_type: varchar
+        description: ""
+
+      - name: description
+        data_type: varchar
+        description: ""
+
+      - name: isclosed
+        data_type: bigint
+        description: ""
+
+      - name: closeddate
+        data_type: timestamp
+        description: ""
+
+      - name: isescalated
+        data_type: bigint
+        description: ""
+
+      - name: ownerid
+        data_type: varchar
+        description: ""
+
+      - name: isclosedoncreate
+        data_type: bigint
+        description: ""
+
+      - name: slastartdate
+        data_type: varchar
+        description: ""
+
+      - name: slaexitdate
+        data_type: varchar
+        description: ""
+
+      - name: isstopped
+        data_type: bigint
+        description: ""
+
+      - name: stopstartdate
+        data_type: varchar
+        description: ""
+
+      - name: case_created_date
+        data_type: timestamp
+        description: ""
+
+      - name: case_created_by
+        data_type: varchar
+        description: ""
+
+      - name: case_lastmodified_date
+        data_type: timestamp
+        description: ""
+
+      - name: case_case_lastmodified_by
+        data_type: varchar
+        description: ""
+
+      - name: systemmodstamp
+        data_type: timestamp
+        description: ""
+
+      - name: servicecontractid
+        data_type: varchar
+        description: ""
+
+      - name: eventsprocesseddate
+        data_type: timestamp
+        description: ""
+
+      - name: dbt_scd_id
+        data_type: varchar
+        description: ""
+
+      - name: dbt_updated_at
+        data_type: timestamp
+        description: ""
+
+      - name: dbt_valid_from
+        data_type: timestamp
+        description: ""
+
+      - name: dbt_valid_to
+        data_type: timestamp
+        description: ""
+
+  - name: dim_salesforce__customer
+    description: "Dimension table for contact and lead-combinedly named as customer"
+    columns:
+      - name: dim_customer_key
+        test:
+          - unique
+          - not_null
+        data_type: varchar
+        description: ""
+
+      - name: customer_id
+        test:
+          - unique
+          - not_null
+        data_type: varchar
+        description: ""
+
+      - name: is_deleted
+        data_type: bigint
+        description: ""
+
+      - name: master_record_id
+        data_type: varchar
+        description: ""
+
+      - name: account_id
+        tests:
+          - relationships:
+              to: ref('stg_salesforce__account')
+              field: account_id
+        data_type: varchar
+        description: ""
+
+      - name: salutation
+        data_type: varchar
+        description: ""
+
+      - name: customer_name
+        data_type: varchar
+        description: ""
+
+      - name: customer_title
+        data_type: varchar
+        description: ""
+
+      - name: company
+        data_type: varchar
+        description: ""
+
+      - name: street
+        data_type: varchar
+        description: ""
+
+      - name: city
+        data_type: varchar
+        description: ""
+
+      - name: state
+        data_type: varchar
+        description: ""
+
+      - name: postalcode
+        data_type: bigint
+        description: ""
+
+      - name: country
+        data_type: varchar
+        description: ""
+
+      - name: phone
+        data_type: varchar
+        description: ""
+
+      - name: mobilephone
+        data_type: varchar
+        description: ""
+
+      - name: fax
+        data_type: varchar
+        description: ""
+
+      - name: email
+        data_type: varchar
+        description: ""
+
+      - name: description
+        data_type: varchar
+        description: ""
+
+      - name: status
+        data_type: varchar
+        description: ""
+
+      - name: created_date
+        data_type: timestamp
+        description: ""
+
+      - name: created_by
+        data_type: varchar
+        description: ""
+
+      - name: lastmodified_date
+        data_type: timestamp
+        description: ""
+
+      - name: lastmodified_by
+        data_type: varchar
+        description: ""
+
+      - name: contact_or_lead
+        data_type: varchar
+        description: ""
+
+  - name: dim_salesforce__solution
+    description: "Dimension table for solution"
+    columns:
+      - name: dim_solution_key
+        data_type: varchar
+        description: ""
+
+      - name: solution_id
+        data_type: varchar
+        description: ""
+
+      - name: is_solution_deleted
+        data_type: bigint
+        description: ""
+
+      - name: solutionnumber
+        data_type: varchar
+        description: ""
+
+      - name: solutionname
+        data_type: varchar
+        description: ""
+
+      - name: ispublished
+        data_type: bigint
+        description: ""
+
+      - name: ispublishedinpublickb
+        data_type: bigint
+        description: ""
+
+      - name: status
+        data_type: varchar
+        description: ""
+
+      - name: isreviewed
+        data_type: bigint
+        description: ""
+
+      - name: createddate
+        data_type: timestamp
+        description: ""
+
+      - name: createdbyid
+        data_type: varchar
+        description: ""
+
+      - name: lastmodifieddate
+        data_type: timestamp
+        description: ""
+
+      - name: lastmodifiedbyid
+        data_type: varchar
+        description: ""
+
+      - name: case_id
+        
+        data_type: varchar
+        description: ""
+
+  - name: dim_salesforce__opportunity
+    description: "Dimension table for opportunity. It is modelled on SCD opportunity"
+    columns:
+      - name: opportunity_id
+        data_type: varchar
+        description: ""
+
+      - name: isdeleted
+        data_type: bigint
+        description: ""
+
+      - name: accountid
+        tests:
+          - relationships:
+              to: ref('stg_salesforce__account')
+              field: account_id
+        data_type: varchar
+        description: ""
+
+      - name: isprivate
+        data_type: bigint
+        description: ""
+
+      - name: name
+        data_type: varchar
+        description: ""
+
+      - name: description
+        data_type: varchar
+        description: ""
+
+      - name: stagename
+        data_type: varchar
+        description: ""
+
+      - name: stagesortorder
+        data_type: bigint
+        description: ""
+
+      - name: amount
+        data_type: bigint
+        description: ""
+
+      - name: probability
+        data_type: bigint
+        description: ""
+
+      - name: expectedrevenue
+        data_type: bigint
+        description: ""
+
+      - name: totalopportunityquantity
+        data_type: varchar
+        description: ""
+
+      - name: closedate
+        data_type: timestamp
+        description: ""
+
+      - name: type
+        data_type: varchar
+        description: ""
+
+      - name: nextstep
+        data_type: varchar
+        description: ""
+
+      - name: leadsource
+        data_type: varchar
+        description: ""
+
+      - name: isclosed
+        data_type: bigint
+        description: ""
+
+      - name: iswon
+        data_type: bigint
+        description: ""
+
+      - name: forecastcategory
+        data_type: varchar
+        description: ""
+
+      - name: forecastcategoryname
+        data_type: varchar
+        description: ""
+
+      - name: campaignid
+        
+        data_type: varchar
+        description: ""
+
+      - name: hasopportunitylineitem
+        data_type: varchar
+        description: ""
+
+      - name: pricebook2id
+        tests:
+          - relationships:
+              to: ref('stg_salesforce__pricebook_entry')
+              field: pricebook2id
+        data_type: varchar
+        description: ""
+
+      - name: ownerid
+        data_type: varchar
+        description: ""
+
+      - name: createddate
+        data_type: timestamp
+        description: ""
+
+      - name: createdbyid
+        data_type: varchar
+        description: ""
+
+      - name: lastmodifieddate
+        data_type: timestamp
+        description: ""
+
+      - name: lastmodifiedbyid
+        data_type: varchar
+        description: ""
+
+      - name: systemmodstamp
+        data_type: timestamp
+        description: ""
+
+      - name: lastactivitydate
+        data_type: varchar
+        description: ""
+
+      - name: laststagechangedate
+        data_type: varchar
+        description: ""
+
+      - name: fiscalyear
+        data_type: bigint
+        description: ""
+
+      - name: fiscalquarter
+        data_type: bigint
+        description: ""
+
+      - name: contactid
+        
+        data_type: varchar
+        description: ""
+
+      - name: primarypartneraccountid
+        data_type: varchar
+        description: ""
+
+      - name: contractid
+        data_type: varchar
+        description: ""
+
+      - name: lastamountchangedhistoryid
+        data_type: varchar
+        description: ""
+
+      - name: lastclosedatechangedhistoryid
+        data_type: varchar
+        description: ""
+
+      - name: deliveryinstallationstatus__c
+        data_type: varchar
+        description: ""
+
+      - name: trackingnumber__c
+        data_type: bigint
+        description: ""
+
+      - name: ordernumber__c
+        data_type: bigint
+        description: ""
+
+      - name: currentgenerators__c
+        data_type: varchar
+        description: ""
+
+      - name: maincompetitors__c
+        data_type: varchar
+        description: ""
+
+      - name: dbt_scd_id
+        data_type: varchar
+        description: ""
+
+      - name: dbt_updated_at
+        data_type: timestamp
+        description: ""
+
+      - name: dbt_valid_from
+        data_type: timestamp
+        description: ""
+
+      - name: dbt_valid_to
+        data_type: timestamp
+        description: ""
+
+      - name: dim_opportunity_key
+        data_type: varchar
+        description: ""
+
+  - name: dim_salesforce__product
+    description: "Dimension table for product"
+    columns:
+      - name: dim_prod_key
+        data_type: varchar
+        description: ""
+
+      - name: product_id
+        data_type: varchar
+        description: ""
+
+      - name: product_name
+        data_type: varchar
+        description: ""
+
+      - name: product_code
+        data_type: varchar
+        description: ""
+
+      - name: product_description
+        data_type: varchar
+        description: ""
+
+      - name: is_product_active
+        data_type: bigint
+        description: ""
+
+      - name: product_created_date
+        data_type: timestamp
+        description: ""
+
+      - name: product_created_by
+        data_type: varchar
+        description: ""
+
+      - name: product_last_modified_date
+        data_type: timestamp
+        description: ""
+
+      - name: product_last_modified_by
+        data_type: varchar
+        description: ""
+
+      - name: externaldatasourceid
+        data_type: varchar
+        description: ""
+
+      - name: externalid
+        data_type: varchar
+        description: ""
+
+      - name: displayurl
+        data_type: varchar
+        description: ""
+
+      - name: stockkeepingunit
+        data_type: varchar
+        description: ""
+
+      - name: product_type
+        data_type: varchar
+        description: ""
+
+      - name: product_class
+        data_type: varchar
+        description: ""
+
+      - name: source_product_id
+        data_type: varchar
+        description: ""
+
+      - name: product_seller_id
+        data_type: varchar
+        description: ""
+
+  - name: dim_salesforce__user
+    description: "Dimension table for users."
+    columns:
+      - name: dim_user_key
+        
+        data_type: varchar
+        description: ""
+
+      - name: user_id
+        data_type: varchar
+        description: ""
+
+      - name: user_nick_name
+        data_type: varchar
+        description: ""
+
+      - name: user_full_name
+        data_type: varchar
+        description: ""
+
+      - name: companyname
+        data_type: varchar
+        description: ""
+
+      - name: division
+        data_type: varchar
+        description: ""
+
+      - name: department
+        data_type: varchar
+        description: ""
+
+      - name: title
+        data_type: varchar
+        description: ""
+
+      - name: street
+        data_type: varchar
+        description: ""
+
+      - name: city
+        data_type: varchar
+        description: ""
+
+      - name: state
+        data_type: varchar
+        description: ""
+
+      - name: postalcode
+        data_type: varchar
+        description: ""
+
+      - name: country
+        data_type: varchar
+        description: ""
+
+      - name: email
+        data_type: varchar
+        description: ""
+
+      - name: senderemail
+        data_type: varchar
+        description: ""
+
+      - name: sendername
+        data_type: varchar
+        description: ""
+
+      - name: signature
+        data_type: varchar
+        description: ""
+
+      - name: phone
+        data_type: varchar
+        description: ""
+
+      - name: fax
+        data_type: varchar
+        description: ""
+
+      - name: mobilephone
+        data_type: varchar
+        description: ""
+
+      - name: profileid
+        data_type: varchar
+        description: ""
+
+      - name: user_type
+        data_type: varchar
+        description: ""
+
+      - name: user_subtype
+        data_type: varchar
+        description: ""
+
+      - name: created_date
+        data_type: timestamp
+        description: ""
+
+      - name: created_by
+        data_type: varchar
+        description: ""
+
+      - name: last_modified_date
+        data_type: timestamp
+        description: ""
+
+      - name: last_modified_by
+        data_type: varchar
+        description: ""
+
+      - name: contact_id
+        
+        data_type: varchar
+        description: ""
+
+      - name: account_id
+        
+        data_type: varchar
+        description: ""
+
+      - name: user_role_id
+        
+        data_type: varchar
+        description: ""
+
+      - name: is_active
+        data_type: bigint
+        description: ""
+
+      - name: name
+        data_type: varchar
+        description: ""
+
+      - name: parentroleid
+        data_type: varchar
+        description: ""
+
+      - name: rollupdescription
+        data_type: varchar
+        description: ""
+
+  - name: fct_salesforce_rev
+    description: "Fact table. Contains the key for all the dimensions"
+    columns:
+      - name: dim_account_key
+        tests:
+          - relationships:
+              to: ref('dim_salesforce__account')
+              field: dim_account_key
+        data_type: varchar
+        description: ""
+
+      - name: dim_opportunity_key
+        tests:
+          - relationships:
+              to: ref('dim_salesforce__opportunity')
+              field: dim_opportunity_key
+        data_type: varchar
+        description: ""
+
+      - name: dim_campaign_key
+        tests:
+          - relationships:
+              to: ref('dim_salesforce__campaign')
+              field: dim_campaign_key
+        data_type: varchar
+        description: ""
+
+      - name: dim_product_key
+        tests:
+          - relationships:
+              to: ref('dim_salesforce__product')
+              field: dim_prod_key
+        data_type: varchar
+        description: ""
+
+      - name: dim_case_key
+        tests:
+          - relationships:
+              to: ref('dim_salesforce__case')
+              field: dim_case_key
+        data_type: varchar
+        description: ""
+
+      - name: dim_customer_key
+        tests:
+          - relationships:
+              to: ref('dim_salesforce__customer')
+              field: dim_customer_key
+        data_type: varchar
+        description: ""
+
+      - name: dim_user_key
+        tests:
+          - relationships:
+              to: ref('dim_salesforce__user')
+              field: dim_user_key
+        data_type: varchar
+        description: ""
+
+      - name: account_id
+        data_type: varchar
+        description: ""
+
+      - name: opportunity_id
+        data_type: varchar
+        description: ""
+
+      - name: campaign_id
+        data_type: varchar
+        description: ""
+
+      - name: product_id
+        data_type: varchar
+        description: ""
+
+      - name: case_id
+        data_type: varchar
+        description: ""
+
+      - name: customer_id
+        data_type: varchar
+        description: ""
+
+      - name: user_id
+        data_type: varchar
+        description: ""
+
+      - name: annual_revenue
+        data_type: bigint
+        description: ""
+
+      - name: opportunity_amount
+        data_type: bigint
+        description: ""
+
+      - name: probability
+        data_type: bigint
+        description: ""
+
+      - name: opportunity_expected_revenue
+        data_type: bigint
+        description: ""
+
+      - name: total_opportunity_quantity
+        data_type: varchar
+        description: ""
+
+      - name: campaign_budgeted_cost
+        data_type: bigint
+        description: ""
+
+      - name: campaign_actual_coset
+        data_type: bigint
+        description: ""
+
+      - name: campaign_expected_revenue
+        data_type: bigint
+        description: ""
+
+      - name: campaign_numberofleads
+        data_type: bigint
+        description: ""
+
+      - name: campaign_numberofconvertedleads
+        data_type: bigint
+        description: ""
+
+      - name: campaign_numberofcontacts
+        data_type: bigint
+        description: ""
+
+      - name: campaign_numberofresponses
+        data_type: bigint
+        description: ""
+
+      - name: campaign_numberofopportunities
+        data_type: bigint
+        description: ""
+
+      - name: campaign_hierarchynumberofleads
+        data_type: bigint
+        description: ""
+
+      - name: campaign_hierarchynumberofconvertedleads
+        data_type: bigint
+        description: ""
+
+      - name: campaign_hierarchynumberofcontacts
+        data_type: bigint
+        description: ""
+
+      - name: campaign_hierarchynumberofresponses
+        data_type: bigint
+        description: ""
+
+      - name: campaign_hierarchynumberofopportunities
+        data_type: bigint
+        description: ""
+
+      - name: campaign_hierarchynumbersent
+        data_type: bigint
+        description: ""
+
+      - name: campaign_hierarchyexpectedrevenue
+        data_type: bigint
+        description: ""
+
+      - name: campaign_hierarchybudgetedcost
+        data_type: bigint
+        description: ""
+
+      - name: campaign_hierarchyactualcost
+        data_type: bigint
+        description: ""
+
+      - name: prod_stockkeepingunit
+        data_type: varchar
+        description: ""
+
+      - name: prod_quantityunitofmeasure
+        data_type: varchar
+        description: ""
+
+      - name: account_last_modified_date
+        data_type: timestamp
+        description: ""
+
+      - name: opportunity_last_modified_date
+        data_type: timestamp
+        description: ""
+
+      - name: campaign_last_modified_date
+        data_type: timestamp
+        description: ""
+
+      - name: price_last_modified_date
+        data_type: timestamp
+        description: ""
+
+      - name: product_last_modified_date
+        data_type: timestamp
+        description: ""
+
+      - name: case_lastmodified_date
+        data_type: timestamp
+        description: ""
+
+      - name: customer_last_modified_date
+        data_type: timestamp
+        description: ""
+
+      - name: user_last_modified_date
+        data_type: timestamp
+        description: ""
+
+  - name: dim_salesforce__date
+    description: "Date dimension"
+    columns:
+      - name: date_key
+        data_type: varchar
+        description: ""
+
+      - name: date_day
+        data_type: date
+        description: ""
+
+      - name: prior_date_day
+        data_type: date
+        description: ""
+
+      - name: next_date_day
+        data_type: date
+        description: ""
+
+      - name: prior_year_date_day
+        data_type: date
+        description: ""
+
+      - name: prior_year_over_year_date_day
+        data_type: date
+        description: ""
+
+      - name: day_of_week
+        data_type: integer
+        description: ""
+
+      - name: day_of_week_iso
+        data_type: integer
+        description: ""
+
+      - name: day_of_week_name
+        data_type: varchar
+        description: ""
+
+      - name: day_of_week_name_short
+        data_type: varchar
+        description: ""
+
+      - name: day_of_month
+        data_type: bigint
+        description: ""
+
+      - name: day_of_year
+        data_type: bigint
+        description: ""
+
+      - name: week_start_date
+        data_type: date
+        description: ""
+
+      - name: week_end_date
+        data_type: date
+        description: ""
+
+      - name: prior_year_week_start_date
+        data_type: date
+        description: ""
+
+      - name: prior_year_week_end_date
+        data_type: date
+        description: ""
+
+      - name: week_of_year
+        data_type: integer
+        description: ""
+
+      - name: iso_week_start_date
+        data_type: date
+        description: ""
+
+      - name: iso_week_end_date
+        data_type: date
+        description: ""
+
+      - name: prior_year_iso_week_start_date
+        data_type: date
+        description: ""
+
+      - name: prior_year_iso_week_end_date
+        data_type: date
+        description: ""
+
+      - name: iso_week_of_year
+        data_type: integer
+        description: ""
+
+      - name: prior_year_week_of_year
+        data_type: integer
+        description: ""
+
+      - name: prior_year_iso_week_of_year
+        data_type: integer
+        description: ""
+
+      - name: month_of_year
+        data_type: integer
+        description: ""
+
+      - name: month_name
+        data_type: varchar
+        description: ""
+
+      - name: month_name_short
+        data_type: varchar
+        description: ""
+
+      - name: month_start_date
+        data_type: date
+        description: ""
+
+      - name: month_end_date
+        data_type: date
+        description: ""
+
+      - name: prior_year_month_start_date
+        data_type: date
+        description: ""
+
+      - name: prior_year_month_end_date
+        data_type: date
+        description: ""
+
+      - name: quarter_of_year
+        data_type: integer
+        description: ""
+
+      - name: quarter_start_date
+        data_type: date
+        description: ""
+
+      - name: quarter_end_date
+        data_type: date
+        description: ""
+
+      - name: year_number
+        data_type: integer
+        description: ""
+
+      - name: year_start_date
+        data_type: date
+        description: ""
+
+      - name: year_end_date
+        data_type: date
+        description: ""
+
+      - name: fulldt
+        data_type: timestamp
+        description: ""
+
+      - name: dulldtz
+        data_type: timestamp
+        description: ""
+
+      - name: dulldtzt
+        data_type: timestamp
+        description: ""
+
+      - name: test
+        data_type: timestamp
+        description: ""
+
+      - name: direct_dts
+        data_type: timestamp
+        description: ""
+
+      - name: ts_est
+        data_type: timestamp with time zone
+        description: ""      

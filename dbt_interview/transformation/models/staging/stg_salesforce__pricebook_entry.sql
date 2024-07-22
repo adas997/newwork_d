@@ -28,3 +28,4 @@ renamed as (
 )
 
 select * from renamed
+where pricebook_entry_id is not null
